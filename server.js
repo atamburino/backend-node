@@ -7,6 +7,10 @@ const app = express();
 // Middleware
 app.use(express.json())
 
+const cors = require('cors');
+app.use(cors()); // Allow all origins (you can limit to specific origins in production)
+
+
 const PORT = process.env.PORT || 3000; // Add a fallback port
 
 app.listen(PORT, () => {
