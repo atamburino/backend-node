@@ -22,18 +22,27 @@ app.get('/', (req, res) => {
   });
   
 
+
   app.get('/products', (req, res) => {
     try {
-      const product = {
-        name: faker.commerce.productName(),
-        description: faker.commerce.productDescription(),
-        price: faker.commerce.price(),
-        companyName: faker.company.name()
-      };
-      
-      res.json(product);
+      // Generate a random number between 20 and 50 for the number of products
+      const numberOfProducts = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+  
+      const products = [];
+  
+      for (let i = 0; i < numberOfProducts; i++) {
+        const product = {
+          name: faker.commerce.productName(),
+          description: faker.commerce.productDescription(),
+          price: faker.commerce.price(),
+          companyName: faker.company.name(),
+        };
+        products.push(product);
+      }
+  
+      res.json(products);
     } catch (error) {
-      res.status(500).json({ message: 'Error generating product', error: error.message });
+      res.status(500).json({ message: 'Error generating products', error: error.message });
     }
   });
   
