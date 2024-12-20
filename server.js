@@ -22,21 +22,27 @@ app.get('/', (req, res) => {
   });
   
 
-
+// Define a route to handle GET requests for /products
   app.get('/products', (req, res) => {
     try {
-      // Generate a random number between 20 and 50 for the number of products
+      // Step 1: Generate a random number between 20 and 50 for the number of products
       const numberOfProducts = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
   
+      // Create an empty array to store the product objects
       const products = [];
   
+      // Step 2: Loop to generate the requested number of products
       for (let i = 0; i < numberOfProducts; i++) {
+
+        // Create a new product object with random data using Faker.js
         const product = {
           name: faker.commerce.productName(),
           description: faker.commerce.productDescription(),
           price: faker.commerce.price(),
           companyName: faker.company.name(),
         };
+
+        // Push the generated product object to the products array
         products.push(product);
       }
   
